@@ -1,0 +1,22 @@
+未解檔案 CASE 001｜網站部署整理版
+
+一、先在電腦測試
+1. 安裝 Python 3.11 或 3.12
+2. 在此資料夾開啟終端機：python -m pip install -r requirements.txt
+3. Windows：複製 .env.example 成 .env，將 APP_ENV 改為 development；設定 FLASK_SECRET_KEY 為自行產生的長字串。
+4. python app.py
+5. 打開 http://127.0.0.1:5000
+
+二、Railway 部署（需要自己的 Railway 帳號與 GitHub 專案）
+1. 將此資料夾內容放到 GitHub 儲存庫根目錄，請勿上傳 .env 或任何 API 金鑰。
+2. Railway -> New Project -> Deploy from GitHub repo -> 選取儲存庫。
+3. Variables 設定 APP_ENV=production、FLASK_SECRET_KEY=<自行產生至少 32 bytes 的隨機字串>。
+4. 若要啟用 OpenAI 自由詢問，再加 OPENAI_API_KEY 與 OPENAI_MODEL；沒有 API Key 也可以玩備援劇情。
+5. Railway Settings -> Networking -> Generate Domain，取得公開網址。
+6. 打開 /health 確認回傳 {"status":"ok"}，再實際玩一次。
+
+三、正式公開前請注意
+- 目前進度儲存在 Flask 簽章 Cookie、手札筆記儲存在瀏覽器 localStorage。沒有帳號或跨裝置同步；清除瀏覽器資料會遺失。
+- API 詢問限制為程序內簡易節流，不能抵禦公開網站的大量請求。若要公開給陌生玩家，請先加入持久化限流、API 成本上限、防濫用措施，建議先不設定 OPENAI_API_KEY，使用離線備援。
+- 場景圖片是目前專案附帶的本地素材，尚非之前示意圖的高精緻新美術。
+- 這份整理版已做靜態語法檢查，但尚未完成真實瀏覽器與 Railway 上線驗收。

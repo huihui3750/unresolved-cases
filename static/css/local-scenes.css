@@ -1,0 +1,11 @@
+/* Local scene images. No external network requests. Loaded after game.css and v24.css. */
+.scene-art{background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important;background-color:#152238!important;isolation:isolate}
+.scene-art::before,.scene-art::after{display:none!important}
+.scene-art[data-scene="書房"]{background-image:linear-gradient(#07101a30,#07101a30),url('/static/images/locations/study.webp')!important}
+.scene-art[data-scene="客廳"]{background-image:linear-gradient(#07101a30,#07101a30),url('/static/images/locations/lounge.webp')!important}
+.scene-art[data-scene="二樓走廊"]{background-image:linear-gradient(#07101a30,#07101a30),url('/static/images/locations/hallway.webp')!important}
+.scene-art[data-scene="廚房"]{background-image:linear-gradient(#07101a30,#07101a30),url('/static/images/locations/kitchen.webp')!important}
+.scene-art[data-scene="私人辦公室"]{background-image:linear-gradient(#07101a30,#07101a30),url('/static/images/locations/office.webp')!important}
+.scene-art[data-scene="調查局系統"]{background-image:linear-gradient(#07101a30,#07101a30),url('/static/images/locations/lab.webp')!important}
+.scene-art .hotspot{z-index:2}
+@media(max-width:680px){.scene-art{background-position:center center!important}}

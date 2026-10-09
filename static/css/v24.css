@@ -1,0 +1,27 @@
+/* V24 - fixed portable journal and scene-to-scene navigation */
+.journal-float{position:fixed;right:clamp(12px,2.5vw,28px);bottom:clamp(14px,3vw,28px);z-index:500;width:82px;min-height:88px;border-radius:18px;border:2px solid #d6b77e;background:linear-gradient(140deg,#4a3429,#231c25);color:#f9e6bd;box-shadow:0 8px 30px #000a,0 0 0 3px #18273e;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;font-weight:700;font-size:15px;touch-action:manipulation}
+.journal-float svg{height:49px;width:49px;filter:drop-shadow(1px 3px 2px #0007)}.journal-float:hover,.journal-float:focus-visible{background:#5b4233;outline:3px solid #f8dfa2;outline-offset:3px}.journal-float.opened{background:#35435a}
+.investigation-full{max-width:none!important;width:100%;padding:clamp(12px,2vw,30px)}
+.scene-switch{display:flex;align-items:center;justify-content:center;gap:clamp(10px,4vw,42px);margin:12px 0 18px}
+.scene-arrow{min-width:64px;min-height:64px;border:2px solid #d8c092;border-radius:14px;background:#253851;color:#f5dfaf;font-size:2rem;cursor:pointer}
+.scene-arrow:hover,.scene-arrow:focus-visible{background:#455975;outline:2px solid #f5dfaf}
+.scene-current{text-align:center;display:flex;flex-direction:column;min-width:180px;gap:3px}.scene-current small{color:#d5c8b3}.scene-current strong{font-size:clamp(1.25rem,2.6vw,1.9rem)}
+.scene-full{width:100%;min-height:min(67vw,720px)!important;height:clamp(420px,66vh,780px)!important;max-height:none!important}
+@media(max-width:640px){.journal-float{width:65px;min-height:70px;right:12px;bottom:12px;font-size:12px}.journal-float svg{width:37px;height:37px}.scene-arrow{min-width:52px;min-height:55px}.scene-current{min-width:120px}.scene-full{height:60vh!important;min-height:360px!important}.investigation-full{padding:12px}}
+
+/* Scene navigation: arrows flank the artwork, not the heading. */
+.scene-frame{display:grid;grid-template-columns:clamp(52px,6vw,82px) minmax(0,1fr) clamp(52px,6vw,82px);align-items:center;gap:clamp(6px,1.3vw,16px);width:100%}
+.scene-frame .scene-full{min-width:0;width:100%}
+.scene-frame .scene-arrow{width:100%;min-width:0;min-height:88px;display:flex;align-items:center;justify-content:center;font-size:clamp(2rem,4vw,3rem);touch-action:manipulation;user-select:none}
+.scene-frame .scene-arrow:active{transform:scale(.97)}
+@media(max-width:640px){.scene-frame{grid-template-columns:46px minmax(0,1fr) 46px;gap:4px}.scene-frame .scene-arrow{min-height:78px;font-size:1.8rem;border-radius:10px}.scene-frame .scene-full{min-height:360px!important}}
+
+/* V25: portable journal, draggable within viewport, visually distinct from evidence. */
+.journal-float{touch-action:none;user-select:none;-webkit-user-select:none;box-sizing:border-box;max-width:calc(100vw - 16px);background:linear-gradient(145deg,#795136 0%,#402a27 52%,#241e2a 100%);border:2px solid #e7ca8b;border-radius:12px 17px 17px 12px;box-shadow:inset 4px 0 0 #b88953,inset 7px 0 0 #392b2c,0 12px 30px #000a,0 0 0 3px #142238;transition:box-shadow .15s,filter .15s}
+.journal-float:hover{filter:brightness(1.12);box-shadow:inset 4px 0 0 #b88953,inset 7px 0 0 #392b2c,0 15px 34px #000b,0 0 0 3px #142238}
+.journal-float:active{cursor:grabbing}
+/* Art-deco circular controls; buttons stay outside the image and do not cover evidence. */
+.scene-frame .scene-arrow{aspect-ratio:1;min-height:0!important;max-width:76px;justify-self:center;border-radius:50%;border:2px solid #e8d09a;background:radial-gradient(circle at 35% 28%,#48546a,#172032 75%);color:#ffe5ac;text-shadow:0 0 14px #f1c77b;box-shadow:inset 0 0 0 4px #182235,0 0 0 2px #745b3d,0 8px 20px #0009;transition:transform .15s,box-shadow .15s,background .15s}
+.scene-frame .scene-arrow:hover,.scene-frame .scene-arrow:focus-visible{transform:scale(1.06);background:radial-gradient(circle at 35% 28%,#746344,#26364a 78%);box-shadow:inset 0 0 0 4px #182235,0 0 0 2px #d6ae70,0 0 20px #d6ae7055}
+.scene-frame .scene-arrow:active{transform:scale(.96)}
+@media(max-width:640px){.scene-frame .scene-arrow{width:42px;max-width:42px;font-size:1.6rem}}
