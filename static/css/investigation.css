@@ -1,0 +1,44 @@
+/* CASE 001 — scene-first investigation layout */
+.inv-shell{max-width:1480px;margin:10px auto 34px;padding:12px 16px 18px;background:#0b1420;border:1px solid #37445b;border-radius:12px;color:#f3eee5;box-shadow:0 18px 55px #0005}
+.inv-head{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:5px 4px 12px}.inv-eyebrow{font-size:11px;letter-spacing:.17em;color:#d9bb88}.inv-head h2{font-size:clamp(24px,2.6vw,36px);margin:3px 0 0;color:#fff5e4}.inv-counter{color:#dfc99f;font-size:13px;white-space:nowrap}
+.inv-stage{border:1px solid #7b684b;border-radius:9px;overflow:hidden;background:#0b1420}.inv-scene{position:relative;width:100%;height:auto!important;min-height:0!important;aspect-ratio:16/8.8;overflow:hidden;border:0!important;border-radius:0!important}
+.inv-hotspot{position:absolute;left:var(--spot-x);top:var(--spot-y);transform:translate(-50%,-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:5px;min-width:46px;background:none!important;border:0!important;padding:0!important;cursor:pointer}.inv-hotspot .hotspot-dot{display:grid;place-items:center;width:33px;height:33px;border:2px solid #f0cf94!important;border-radius:50%;background:#122135e8!important;color:#ffe5b7!important;box-shadow:0 0 0 5px #0006;font-size:21px}.inv-hotspot .hotspot-label{position:static!important;visibility:hidden!important;opacity:0!important;transform:none!important;padding:5px 9px;background:#091321eb!important;color:#fff2d8!important;border:1px solid #d3b47d!important;border-radius:5px;white-space:nowrap;font-size:13px;pointer-events:none}.inv-hotspot:hover .hotspot-label,.inv-hotspot:focus-visible .hotspot-label{visibility:visible!important;opacity:1!important}.inv-hotspot.found .hotspot-dot{background:#245d54!important;border-color:#9bd3b5!important}
+.inv-arrow{position:absolute;z-index:7;top:45%;transform:translateY(-50%);width:49px;height:74px;background:#0b1420b9!important;border:1px solid #e6c58c80!important;color:#fff0cf!important;font-size:30px;cursor:pointer}.inv-arrow:hover{background:#3c3123e8!important}.inv-arrow-prev{left:0;border-radius:0 10px 10px 0}.inv-arrow-next{right:0;border-radius:10px 0 0 10px}.inv-scene-caption{position:absolute;bottom:0;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 24px;background:linear-gradient(transparent,#08121de8);color:#fff4df;pointer-events:none}.inv-scene-caption span{font-size:17px;font-weight:700}.inv-scene-caption small{font-size:12px;color:#e1d7c9}
+.inv-locations{display:flex;gap:8px;overflow-x:auto;padding:13px 0 4px;scrollbar-width:thin}.inv-locations button{flex:1 0 auto;min-width:112px;padding:12px 14px;border-radius:7px;border:1px solid #58647a;background:#1a293b;color:#f0e8d8;font-size:15px;cursor:pointer}.inv-locations button.active{background:#6a5132;border-color:#f0cc8f;color:white}.inv-locations button:hover{border-color:#eac58a}.inv-lab{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 4px 0;color:#e3d1b4}.inv-lab button,.inv-help button{padding:9px 15px;background:#2b3c50;border:1px solid #8e9bb0;border-radius:6px;color:#f6ebd7;cursor:pointer}.inv-lab button:disabled{opacity:.5;cursor:default}.inv-help{text-align:right;margin-top:9px}.inv-help button{background:transparent;border-color:#5b6676;font-size:12px}
+/* Keep investigation popup compact and above the scene. */
+.inv-shell ~ .overlay .evidence-modal{max-width:460px}
+@media(max-width:700px){.inv-shell{padding:8px}.inv-scene{aspect-ratio:4/3}.inv-arrow{width:34px;height:58px;font-size:23px}.inv-hotspot .hotspot-dot{width:28px;height:28px;font-size:17px}.inv-scene-caption{padding:10px}.inv-scene-caption small{display:none}.inv-head h2{font-size:24px}.inv-locations button{min-width:105px;font-size:13px}}
+
+
+/* Investigation atmosphere and useful feedback — no item-list panels */
+.inv-stage{position:relative;isolation:isolate;box-shadow:0 16px 38px #0008,inset 0 0 0 1px #e4c99a22}
+.inv-scene::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse at center,transparent 44%,#03081180 100%);box-shadow:inset 0 0 80px #03081160}
+.inv-hotspot{z-index:6}
+.inv-hotspot:not(.found) .hotspot-dot{animation:inv-beacon 2.8s ease-in-out infinite}
+.inv-hotspot:hover .hotspot-dot,.inv-hotspot:focus-visible .hotspot-dot{box-shadow:0 0 0 7px #f5d89c30,0 0 26px #eac68bba!important;transform:scale(1.1)}
+.inv-hotspot.found .hotspot-dot{animation:none;opacity:.86}
+.inv-discovery-toast{position:fixed;right:22px;bottom:28px;z-index:99999;max-width:min(420px,calc(100vw - 32px));padding:15px 22px;background:#132a35f5;color:#f6e7c8;border:1px solid #d8ba82;border-left:4px solid #d8ba82;border-radius:8px;box-shadow:0 15px 40px #0009;font-size:16px;font-weight:600;animation:inv-toast 2.8s ease-in-out both;pointer-events:none}
+@keyframes inv-beacon{0%,100%{box-shadow:0 0 0 4px #eac68b22,0 0 8px #eac68b33}50%{box-shadow:0 0 0 9px #eac68b18,0 0 23px #eac68b99}}
+@keyframes inv-toast{0%{opacity:0;transform:translateY(14px)}12%,80%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-8px)}}
+@media(prefers-reduced-motion:reduce){.inv-hotspot:not(.found) .hotspot-dot,.inv-discovery-toast{animation:none}}
+
+/* Scene navigation: short cross-fade with reduced-motion support */
+.inv-stage{opacity:1;transform:translateY(0);transition:opacity .18s ease,transform .18s ease}
+.inv-stage.inv-changing{opacity:.16;transform:translateY(4px);pointer-events:none}
+.inv-stage.inv-entering{opacity:.16;transform:translateY(4px)}
+/* Compact in-world HUD, without returning the old item list */
+.inv-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;margin-bottom:8px;border-left:3px solid #d9b879;background:linear-gradient(90deg,#18283a99,transparent)}
+.inv-head h2{margin:2px 0;font-size:clamp(18px,2vw,26px);line-height:1.25}
+.inv-eyebrow{font-size:11px;letter-spacing:.13em;color:#dfc18b}
+.inv-counter{flex-shrink:0;font-size:13px;color:#f1e4ca;background:#132439a8;border:1px solid #bd9b664d;border-radius:6px;padding:8px 12px;font-variant-numeric:tabular-nums}
+@media(max-width:520px){.inv-head{padding:8px}.inv-counter{font-size:11px;padding:7px}.inv-scene-caption small{display:none}}
+@media(prefers-reduced-motion:reduce){.inv-stage{transition:none!important;transform:none!important}.inv-stage.inv-changing,.inv-stage.inv-entering{opacity:1!important}}
+
+/* Contextual evidence popover for scene hotspots; other dialogs stay unchanged. */
+.inv-popover-overlay{position:fixed;inset:0;z-index:10000;background:rgba(3,8,16,.25);display:block;backdrop-filter:none}
+.inv-popover-overlay .inv-anchored-popup{position:fixed!important;margin:0!important;width:min(370px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;transform:none!important;border:1px solid #c7a56b;background:linear-gradient(155deg,#1b2c40,#0d1727);box-shadow:0 18px 52px #000b;border-radius:12px;padding:18px;color:#f3e8d8;animation:inv-pop .17s ease-out}
+.inv-anchored-popup h2{font-size:clamp(19px,2vw,25px);margin:12px 0}
+.inv-anchored-popup p{line-height:1.65}
+.inv-anchored-popup .modal-actions{display:flex;flex-wrap:wrap;gap:8px}
+@keyframes inv-pop{from{opacity:0;filter:brightness(.7)}to{opacity:1;filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){.inv-anchored-popup{animation:none!important}}

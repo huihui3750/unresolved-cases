@@ -220,6 +220,8 @@ def interrogate():
         session['ai_bucket'] = secrets.token_urlsafe(18)
     if not allow_request(session['ai_bucket']):
         return jsonify(error='詢問過於頻繁，請稍後再試。'), 429
+    if os.environ.get('CASE001_ENABLE_AI', '0') != '1':
+        return offline_answer(person, question, 'offline_default')
     key = os.environ.get('OPENAI_API_KEY', '').strip()
     if not key or key == 'your_api_key_here' or not key.startswith('sk-'):
         return offline_answer(person, question, 'missing_key')
